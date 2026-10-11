@@ -225,7 +225,7 @@ curl -X POST https://<your-app>/api/v1/contacts \
 ```
 
 - `newsletter` (slug) and `email` are required. `source` labels where the signup came from.
-- `resubscribe: true` brings back someone who unsubscribed (never someone who bounced or complained).
+- `resubscribe: true` brings back someone who went dormant. Someone who unsubscribed only comes back when the newsletter confirms signups: they get the confirmation email and stay unsubscribed until they click it. Bounced and complained contacts never come back.
 - Pass your visitor's IP as `ip` to get the per-visitor limit of 5 signups per 10 minutes. Each key is also limited to 600 signups an hour.
 - Answers `201` for a new contact, `200` if it already existed, with `{ id, status, created }`. When the newsletter confirms signups, `status` is `pending` and `inbox` links to the reader's email provider for your "check your inbox" message.
 
